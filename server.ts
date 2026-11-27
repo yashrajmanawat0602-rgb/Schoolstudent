@@ -23,6 +23,9 @@ dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
 const UPLOADS_DIR = path.resolve(process.cwd(), 'uploads');
+if (!fs.existsSync(UPLOADS_DIR)) {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
 
 app.set('trust proxy', 1);
 app.use(
@@ -48,6 +51,11 @@ const apiLimiter = rateLimit({
   max: 600,
   standardHeaders: true,
   legacyHeaders: false,
+});
+
+// Lightweight health check for Render / Cloud Run readiness probes
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true });
 });
 
 // Lazy DB initialization on first API traffic (avoids startup probes)

@@ -29,9 +29,17 @@ npm run build
 npm run start
 ```
 
-## 4. Production Checklist
-- [ ] All `SQL_*` environment variables configured via Secrets Manager
-- [ ] HTTPS enforced by cloud load balancer / Cloud Run
-- [ ] Database schema applied via Drizzle Kit
+## 4. Deploying on Render (Blueprint)
+This repository includes a `render.yaml` Blueprint at the repository root that automatically provisions:
+- A managed PostgreSQL database (`schoolstudent-db`)
+- The Node.js web service (`schoolstudent`) with Vite production build, automatic Drizzle schema push (`npm run db:push`), health check (`/api/health`), and auto-generated `AUTH_SECRET`.
+
+Push `render.yaml` (and your latest code) to your GitHub `main` branch, then click **Retry** / **Apply** in the Render Blueprint dashboard.
+
+## 5. Production Checklist
+- [ ] `DATABASE_URL` or `SQL_*` environment variables configured via Secrets Manager / Render Blueprint
+- [ ] HTTPS enforced by cloud load balancer / Render / Cloud Run
+- [ ] Database schema applied via Drizzle Kit (`npm run db:push`)
 - [ ] Automated tests passing (`npm test`) and TypeScript clean (`npm run lint`)
 - [ ] Demo accounts replaced or disabled before onboarding live student records
+

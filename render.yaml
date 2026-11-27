@@ -1,0 +1,23 @@
+databases:
+  - name: schoolstudent-db
+    databaseName: schoolstudent
+    user: schoolstudent
+    plan: free
+
+services:
+  - type: web
+    name: schoolstudent
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run db:push && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: schoolstudent-db
+          property: connectionString
