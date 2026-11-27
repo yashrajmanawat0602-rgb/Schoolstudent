@@ -9,7 +9,7 @@ services:
     name: schoolstudent
     runtime: node
     plan: free
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: npm install --include=dev --legacy-peer-deps && npm run build
     startCommand: npm run db:push && npm start
     healthCheckPath: /api/health
     envVars:
