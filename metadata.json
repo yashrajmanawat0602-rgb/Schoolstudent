@@ -1,0 +1,6 @@
+{
+  "name": "SchoolConnect",
+  "description": "Everything about your child's school journey — in one place. A secure school notes, marks, attendance, and parent-teacher communication platform.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

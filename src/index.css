@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --sc-primary: #1e3a8a;
+  --sc-secondary: #0f172a;
+  --sc-accent: #d97706;
+  --sc-canvas: #f8fafc;
+  --sc-surface: #ffffff;
+  --sc-border: #e2e8f0;
+  --sc-text: #0f172a;
+  --sc-muted: #64748b;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.dark {
+  --sc-canvas: #090d16;
+  --sc-surface: #111827;
+  --sc-border: #1e293b;
+  --sc-text: #f1f5f9;
+  --sc-muted: #94a3b8;
+}
+
+.theme-school {
+  --sc-canvas: #f4f6fb;
+  --sc-surface: #ffffff;
+  --sc-border: #dbe3f0;
+}
+
+.dark.theme-school {
+  --sc-canvas: #0b1120;
+  --sc-surface: #131c31;
+  --sc-border: #23304d;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--sc-canvas);
+  color: var(--sc-text);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono, .tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
